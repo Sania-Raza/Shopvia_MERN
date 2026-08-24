@@ -1,15 +1,16 @@
 const express = require("express");
-const ErrorHandler = require("./middleware/error");
+const ErrorHandler = require("./middlewares/error");
 const app = express();
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+// const dotenv = require("dotenv");
+// require("dotenv").config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:5173",
     credentials: true,
   }),
 );
