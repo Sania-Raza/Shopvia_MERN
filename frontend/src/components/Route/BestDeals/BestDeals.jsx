@@ -5,13 +5,14 @@ import ProductCard from "../ProductCard/ProductCard";
 
 const BestDeals = () => {
   const [data, setData] = useState([]);
-  // const { allProducts } = useSelector((state) => state.products);
-  // useEffect(() => {
-  //   const allProductsData = allProducts ? [...allProducts] : [];
-  //   const sortedData = allProductsData?.sort((a, b) => b.sold_out - a.sold_out);
-  //   const firstFive = sortedData && sortedData.slice(0, 5);
-  //   setData(firstFive);
-  // }, [allProducts]);
+  const { allProducts } = useSelector((state) => state.products);
+  useEffect(() => {
+    const sortedData = [...allProducts].sort(
+      (a, b) => b.total_sell - a.total_sell,
+    );
+    const firstFive = sortedData && sortedData.slice(0, 5);
+    setData(firstFive);
+  }, [allProducts]);
 
   return (
     <div>

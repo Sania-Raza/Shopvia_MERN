@@ -5,18 +5,21 @@ import styles from "../../styles/styles";
 
 const Navbar = ({ active }) => {
   return (
-    <div className={`block 800px:${styles.noramlFlex}`}>
-      {navItems &&
-        navItems.map((i, index) => (
-          <div className="flex">
-            <Link
-              to={i.url}
-              className={`${active === index + 1 ? "text-[#17dd1f]" : "text-black 800px:text-[#fff]"} pb-7.5 800px:pb-0 font-medium px-6 cursor-pointer}`}
-            >
-              {i.title}
-            </Link>
-          </div>
-        ))}
+    <div className={`block lg:flex items-center`}>
+      {navItems?.map((item, index) => (
+        <div key={item.title}>
+          <Link
+            to={item.url}
+            className={`${
+              active === index + 1
+                ? "text-[#17dd1f]"
+                : "text-black lg:text-white"
+            } pb-7.5 lg:pb-0 font-medium px-6 cursor-pointer`}
+          >
+            {item.title}
+          </Link>
+        </div>
+      ))}
     </div>
   );
 };

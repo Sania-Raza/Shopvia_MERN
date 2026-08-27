@@ -21,7 +21,7 @@ import { useSelector } from "react-redux";
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
-  // const { allProducts } = useSelector((state) => state.products);
+ const { allProducts } = useSelector((state) => state.products);
   // const { cart } = useSelector((state) => state.cart);
 
   // Wishlist is intentionally disabled for now.
@@ -58,9 +58,10 @@ const Header = ({ activeHeading }) => {
   useEffect(() => {
     const handleScroll = () => {
       setActive(window.scrollY > 70);
+      window.addEventListener("scroll", handleScroll);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -71,10 +72,14 @@ const Header = ({ activeHeading }) => {
     <>
       {/* ================= DESKTOP TOP HEADER ================= */}
       <div className={`${styles.section}`}>
-        <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
+        <div className="hidden lg:h-12.5 lg:my-5 lg:flex items-center justify-between">
           <div>
             <Link to="/">
-              <img src="../../Assests/logo.png" alt="Logo" />
+              <img
+                className="h-20"
+                src="https://shopvia.pk/wp-content/uploads/elementor/thumbs/logo-01-scaled-rlwdrsge74eteo3fiak2itpoe12ycp3oo7yd0nct0o.jpg"
+                alt="Logo"
+              />
             </Link>
           </div>
 
@@ -123,14 +128,14 @@ const Header = ({ activeHeading }) => {
       <div
         className={`${
           active ? "shadow-sm fixed top-0 left-0 z-10" : ""
-        } transition hidden 800px:flex items-center justify-between w-full bg-[#3321c8] h-17.5`}
+        } transition hidden lg:flex items-center justify-between w-full bg-[#3321c8] h-17.5`}
       >
         <div
           className={`${styles.section} relative ${styles.noramlFlex} justify-between`}
         >
           {/* Categories */}
           <div onClick={() => setDropDown(!dropDown)}>
-            <div className="relative h-15 mt-2.5 w-67.5 hidden 1000px:block">
+            <div className="relative h-15 mt-2.5 w-67.5 hidden lg:block">
               <BiMenuAltLeft size={30} className="absolute top-3 left-2" />
 
               <button
@@ -235,7 +240,7 @@ const Header = ({ activeHeading }) => {
       <div
         className={`${
           active ? "shadow-sm fixed top-0 left-0 z-10" : ""
-        } w-full h-15 bg-white z-50 top-0 left-0 shadow-sm 800px:hidden`}
+        } w-full h-15 bg-white z-50 top-0 left-0 shadow-sm lg:hidden`}
       >
         <div className="w-full flex items-center justify-between">
           {/* Menu button */}
@@ -250,7 +255,8 @@ const Header = ({ activeHeading }) => {
           {/* Logo */}
           <div>
             <Link to="/">
-              <img className="h-12.5 w-full"
+              <img
+                className="h-12.5 w-full"
                 src="https://shopvia.pk/wp-content/uploads/elementor/thumbs/logo-01-scaled-rlwdrsge74eteo3fiak2itpoe12ycp3oo7yd0nct0o.jpg"
                 alt="Logo"
               />
@@ -326,7 +332,7 @@ const Header = ({ activeHeading }) => {
                       >
                         <div className="flex items-center py-2">
                           <img
-                            src={product?.images?.[0]?.url}
+                            src={product?.image_Url?.[0]?.url}
                             alt={product?.name || "Product"}
                             className="w-12.5 h-12.5 object-contain mr-2"
                           />
