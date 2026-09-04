@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:5173";
+const baseUrl = "https://shopvia-ecommerce.vercel.app";
 
 module.exports = {
   baseUrl,
