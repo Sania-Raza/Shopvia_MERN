@@ -26,8 +26,8 @@ const Cart = ({ setOpenCart }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-[#0000004b] h-screen z-10">
-      <div className="fixed top-0 right-0 h-full w-[80%] 800px:w-[25%] bg-white flex flex-col overflow-y-scroll justify-between shadow-sm">
+    <div className="fixed inset-0 w-full h-screen bg-[#0000004b] z-100">
+      <div className="fixed top-0 right-0 h-full w-full sm:w-[75%] md:w-[50%] lg:w-[30%] bg-white flex flex-col overflow-y-scroll justify-between shadow-sm">
         {cart && cart.length === 0 ? (
           <div className="w-full h-screen flex items-center justify-center">
             <div className="flex w-full justify-end pt-5 pr-5 fixed top-3 right-3">
@@ -37,7 +37,24 @@ const Cart = ({ setOpenCart }) => {
                 onClick={() => setOpenCart(false)}
               />
             </div>
-            <h5>Cart Items is empty!</h5>
+            <div className="w-full flex flex-col items-center justify-center py-25 px-4">
+                         
+            
+                          <h2 className="text-[20px] font-semibold text-[#1E1B4B] mb-1.5">
+                            No Cart Item right now
+                          </h2>
+            
+                          <p className="text-[14px] text-gray-500 text-center max-w-87.5 mb-6">
+                            Let's find something you like.
+                          </p>
+            
+                          <Link to="/products">
+                            <button className="bg-[#1E1B4B] hover:bg-[#141130] text-white text-sm font-medium px-6 py-3 rounded-full transition-colors">
+                              Browse Products
+                            </button>
+                          </Link>
+                        </div>
+            
           </div>
         ) : (
           <>
@@ -72,14 +89,11 @@ const Cart = ({ setOpenCart }) => {
               </div>
             </div>
 
-            <div className="px-5 mb-3">
-              {/* checkout buttons */}
+            <div className="px-4 sm:px-5 mb-3">
               <Link to="/checkout">
-                <div
-                  className={`h-11.25 flex items-center justify-center w-full bg-[#e44343] rounded-[5px]`}
-                >
-                  <h1 className="text-white text-[18px] font-semibold">
-                    Checkout Now (USD${totalPrice})
+                <div className="w-full min-h-12.5 flex items-center justify-center bg-[#C9A227] hover:bg-[#b8931f] transition-colors px-3 py-2.5 rounded-full cursor-pointer">
+                  <h1 className="text-[#1E1B4B] text-[16px] sm:text-[18px] font-semibold text-center">
+                    Checkout Now (PKR {totalPrice})
                   </h1>
                 </div>
               </Link>
@@ -116,14 +130,14 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
       <div className="w-full flex items-center">
         <div>
           <div
-            className={`bg-[#e44343] border border-[#e4434373] rounded-full w-6.25 h-6.25 ${styles.noramlFlex} justify-center cursor-pointer`}
+            className={`bg-[#1E1B4B] rounded-full w-6.25 h-6.25 ${styles.noramlFlex} justify-center cursor-pointer`}
             onClick={() => increment(data)}
           >
             <HiPlus size={18} color="#fff" />
           </div>
           <span className="pl-2.5">{data.qty}</span>
           <div
-            className="bg-[#a7abb14f] rounded-full w-6.25 h-6.25 flex items-center justify-center cursor-pointer"
+            className="bg-gray-100 rounded-full w-6.25 h-6.25 flex items-center justify-center cursor-pointer"
             onClick={() => decrement(data)}
           >
             <HiOutlineMinus size={16} color="#7d879c" />
@@ -137,10 +151,10 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
         <div className="pl-1.25">
           <h1>{data.name}</h1>
           <h4 className="font-normal text-[15px] text-[#00000082]">
-            ${data.discountPrice} * {value}
+            PKR{data.discountPrice} * {value}
           </h4>
-          <h4 className="font-semibold text-[17px] pt-0.75 text-[#d02222] font-Roboto">
-            US${totalPrice}
+          <h4 className="font-semibold text-[17px] pt-0.75 text-[#1E1B4B] font-Roboto">
+            PKR {totalPrice}
           </h4>
         </div>
         <RxCross1

@@ -217,7 +217,7 @@ const ShippingInfo = ({
           <div className="w-[50%]">
             <label className="block pb-2">Country</label>
             <select
-              className="w-[95%] border h-[40px] rounded-[5px]"
+              className="w-[95%] border border-[#e5e0d8] h-10 rounded-lg px-2 outline-none focus:border-[#C9A227] focus:ring-1 focus:ring-[#C9A227]"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             >
@@ -235,7 +235,7 @@ const ShippingInfo = ({
           <div className="w-[50%]">
             <label className="block pb-2">City</label>
             <select
-              className="w-[95%] border h-[40px] rounded-[5px]"
+              className="w-[95%] border border-[#e5e0d8] h-10 rounded-lg px-2 outline-none focus:border-[#C9A227] focus:ring-1 focus:ring-[#C9A227]"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             >
@@ -260,7 +260,7 @@ const ShippingInfo = ({
               required
               value={address1}
               onChange={(e) => setAddress1(e.target.value)}
-              className={`${styles.input} !w-[95%]`}
+              className={`${styles.input} w-[95%]!`}
             />
           </div>
           <div className="w-[50%]">
@@ -319,36 +319,39 @@ const CartData = ({
   discountPercentenge,
 }) => {
   return (
-    <div className="w-full bg-[#fff] rounded-md p-5 pb-8">
+    <div className="w-full bg-white rounded-md p-5 pb-8">
       <div className="flex justify-between">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">subtotal:</h3>
-        <h5 className="text-[18px] font-[600]">${subTotalPrice}</h5>
+        <h3 className="text-[16px] font-normal text-[#000000a4]">subtotal:</h3>
+        <h5 className="text-[18px] font-semibold">PKR {subTotalPrice}</h5>
       </div>
       <br />
       <div className="flex justify-between">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">shipping:</h3>
-        <h5 className="text-[18px] font-[600]">${shipping.toFixed(2)}</h5>
+        <h3 className="text-[16px] font-normal text-[#000000a4]">shipping:</h3>
+        <h5 className="text-[18px] font-semibold">PKR {shipping.toFixed(2)}</h5>
       </div>
       <br />
       <div className="flex justify-between border-b pb-3">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">Discount:</h3>
-        <h5 className="text-[18px] font-[600]">
-          - {discountPercentenge ? "$" + discountPercentenge.toString() : null}
+        <h3 className="text-[16px] font-normal text-[#000000a4]">Discount:</h3>
+        <h5 className="text-[18px] font-semibold">
+          -{" "}
+          {discountPercentenge ? "PKR " + discountPercentenge.toString() : null}
         </h5>
       </div>
-      <h5 className="text-[18px] font-[600] text-end pt-3">${totalPrice}</h5>
+      <h5 className="text-[18px] font-semibold text-end pt-3">
+        PKR {totalPrice}
+      </h5>
       <br />
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          className={`${styles.input} h-[40px] pl-2`}
+          className={`${styles.input} h-10 pl-2`}
           placeholder="Coupoun code"
           value={couponCode}
           onChange={(e) => setCouponCode(e.target.value)}
           required
         />
         <input
-          className={`w-full h-[40px] border border-[#f63b60] text-center text-[#f63b60] rounded-[3px] mt-8 cursor-pointer`}
+          className="w-full h-10 bg-[#C9A227] hover:bg-[#b8931f] transition-colors text-center text-[#1E1B4B] font-semibold rounded-lg mt-8 cursor-pointer"
           required
           value="Apply code"
           type="submit"

@@ -27,7 +27,7 @@ export const brandingData = [
   {
     id: 1,
     title: "Free Shipping",
-    Description: "From all orders over 100$",
+    Description: "From all orders over PKR 5k",
     icon: (
       <svg
         width="36"
@@ -38,35 +38,35 @@ export const brandingData = [
       >
         <path
           d="M1 1H5.63636V24.1818H35"
-          stroke="#FFBB38"
+          stroke="#C9A227"
           strokeWidth="2"
           strokeMiterlimit="10"
           strokeLinecap="square"
         />
         <path
           d="M8.72763 35.0002C10.4347 35.0002 11.8185 33.6163 11.8185 31.9093C11.8185 30.2022 10.4347 28.8184 8.72763 28.8184C7.02057 28.8184 5.63672 30.2022 5.63672 31.9093C5.63672 33.6163 7.02057 35.0002 8.72763 35.0002Z"
-          stroke="#FFBB38"
+          stroke="#C9A227"
           strokeWidth="2"
           strokeMiterlimit="10"
           strokeLinecap="square"
         />
         <path
           d="M31.9073 35.0002C33.6144 35.0002 34.9982 33.6163 34.9982 31.9093C34.9982 30.2022 33.6144 28.8184 31.9073 28.8184C30.2003 28.8184 28.8164 30.2022 28.8164 31.9093C28.8164 33.6163 30.2003 35.0002 31.9073 35.0002Z"
-          stroke="#FFBB38"
+          stroke="#C9A227"
           strokeWidth="2"
           strokeMiterlimit="10"
           strokeLinecap="square"
         />
         <path
           d="M34.9982 1H11.8164V18H34.9982V1Z"
-          stroke="#FFBB38"
+          stroke="#C9A227"
           strokeWidth="2"
           strokeMiterlimit="10"
           strokeLinecap="square"
         />
         <path
           d="M11.8164 7.18164H34.9982"
-          stroke="#FFBB38"
+          stroke="#C9A227"
           strokeWidth="2"
           strokeMiterlimit="10"
           strokeLinecap="square"
@@ -208,10 +208,10 @@ export const categoriesData = [
   },
   {
     id: 3,
-    title: "Accessories",
+    title: "jewellery",
     subTitle: "",
     image_Url:
-      "https://img.freepik.com/free-vector/ordering-goods-online-internet-store-online-shopping-niche-e-commerce-website-mother-buying-babies-clothes-footwear-toys-infant-accessories_335657-2345.jpg?w=2000",
+      "https://png.pngtree.com/png-vector/20250618/ourmid/pngtree-ornate-gold-and-diamond-jewelry-set-no-background-png-image_16548654.png",
   },
   {
     id: 4,
@@ -227,41 +227,7 @@ export const categoriesData = [
     image_Url:
       "https://media.istockphoto.com/id/1661434372/vector/shoe.jpg?s=612x612&w=0&k=20&c=UHmJ46epdt5ilUa2Nbf5qsAxHMawhmiYsHlrcsCNSJI=",
   },
-  {
-    id: 6,
-    title: "Gifts",
-    subTitle: "",
-    image_Url:
-      "https://png.pngtree.com/png-clipart/20240204/original/pngtree-happy-birthday-3d-gift-box-and-balloons-png-image_14232933.png",
-  },
-  {
-    id: 7,
-    title: "Pet Care",
-    subTitle: "",
-    image_Url:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQic7lTTMltyGjip4a_KJ-sfPlepJrvuhqGwaqk2LSg1S_qWKZfyOhyt2H-&s=10",
-  },
-  {
-    id: 8,
-    title: "Mobile and Tablets",
-    subTitle: "",
-    image_Url:
-      "https://st-troy.mncdn.com/mnresize/1500/1500/Content/media/ProductImg/original/mpwp3tua-apple-iphone-14-256gb-mavi-mpwp3tua-637986832343472449.jpg",
-  },
-  {
-    id: 9,
-    title: "Music and Gaming",
-    subTitle: "",
-    image_Url:
-      "https://static.vecteezy.com/system/resources/previews/011/996/555/original/3d-black-headphone-illustration-ecommerce-icon-png.png",
-  },
-  {
-    id: 10,
-    title: "Others",
-    subTitle: "",
-    image_Url:
-      "https://searchspring.com/wp-content/uploads/2022/10/Hero-Image-Platform-Others-2.png",
-  },
+  
 ];
 
 // product Data

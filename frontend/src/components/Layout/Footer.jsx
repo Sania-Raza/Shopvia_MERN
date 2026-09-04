@@ -15,9 +15,9 @@ import {
 const Footer = () => {
   return (
     <div className="bg-black text-white">
-      <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#342ac8] py-7">
+      <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#1E1B4B]/40 py-7">
         <h1 className="lg:text-4xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold md:w-2/5">
-          <span className="text-[#56d879]">Subscribe</span> us for geting news{" "}
+          <span className="text-[#C9A227]">Subscribe</span> us for geting news{" "}
           <br />
           events and offers
         </h1>
@@ -29,7 +29,7 @@ const Footer = () => {
             className="text-gray-800 border-2-teal bg-white
                 sm:w-72 w-full sm:mr-5 mr-1 lg:mb-0 mb-4 py-2.5 rounded px-2 focus:outline-none"
           />
-          <button className="bg-teal-600 hover:bg-teal-500 duration-300 px-5 py-2.5 rounded-md text-white md:w-auto w-full">
+          <button className="bg-[#C9A227] hover:bg-[#b8931f] duration-300 px-5 py-2.5 rounded-md text-white text-semibold md:w-auto w-full">
             Submit
           </button>
         </div>
@@ -46,19 +46,19 @@ const Footer = () => {
           </h2>
           <br />
           <p>The home and elements needeed to create beatiful products.</p>
-          <div className="flex items-center mt-3.75">
+          <div className="flex items-center mt-3.75 ">
             <AiFillFacebook size={25} className="cursor-pointer" />
             <AiOutlineTwitter
               size={25}
-              style={{ marginLeft: "15px", cursor: "pointer" }}
+              style={{ marginLeft: "15px", cursor: "pointer", hover:"hover:bg-[#C9A227]" }}
             />
             <AiFillInstagram
               size={25}
-              style={{ marginLeft: "15px", cursor: "pointer" }}
+              style={{ marginLeft: "15px", cursor: "pointer", hover:"hover:bg-[#C9A227]" }}
             />
             <AiFillYoutube
               size={25}
-              style={{ marginLeft: "15px", cursor: "pointer" }}
+              style={{ marginLeft: "15px", cursor: "pointer", hover:"hover:text-[#C9A227]" }}
             />
           </div>
         </ul>
@@ -68,7 +68,7 @@ const Footer = () => {
           {footerProductLinks.map((link, index) => (
             <li key={index}>
               <Link
-                className="text-gray-400 hover:text-teal-400 duration-300
+                className="text-gray-400 hover:text-[#C9A227] duration-300
                    text-sm cursor-pointer leading-6"
                 to={link.link}
               >
@@ -83,7 +83,7 @@ const Footer = () => {
           {footercompanyLinks.map((link, index) => (
             <li key={index}>
               <Link
-                className="text-gray-400 hover:text-teal-400 duration-300
+                className="text-gray-400 hover:text-[#C9A227]duration-300
                    text-sm cursor-pointer leading-6"
                 to={link.link}
               >
@@ -98,7 +98,7 @@ const Footer = () => {
           {footerSupportLinks.map((link, index) => (
             <li key={index}>
               <Link
-                className="text-gray-400 hover:text-teal-400 duration-300
+                className="text-gray-400 hover:text-[#C9A227] duration-300
                    text-sm cursor-pointer leading-6"
                 to={link.link}
               >

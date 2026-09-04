@@ -2,7 +2,6 @@ import React from "react";
 import styles from "../../styles/styles";
 
 const CheckoutSteps = ({ active }) => {
-  console.log(active);
   return (
     <div className="w-full flex justify-center">
       <div className="w-[90%] 800px:w-[50%] flex items-center flex-wrap">
@@ -11,20 +10,28 @@ const CheckoutSteps = ({ active }) => {
             <span className={`${styles.cart_button_text}`}>1.Shipping</span>
           </div>
           <div
-            className={`${
+            className={
               active > 1
-                ? "w-[30px] 800px:w-[70px] h-[4px] !bg-[#f63b60]"
-                : "w-[30px] 800px:w-[70px] h-[4px] !bg-[#FDE1E6]"
-            }`}
+                ? "w-7.5 800px:w-17.5 h-1 bg-[#C9A227]!"
+                : "w-7.5 800px:w-17.5 h-1 bg-gray-200!"
+            }
           />
         </div>
 
         <div className={`${styles.noramlFlex}`}>
           <div
-            className={`${active > 1 ? `${styles.cart_button}` : `${styles.cart_button} !bg-[#FDE1E6]`}`}
+            className={
+              active > 1
+                ? `${styles.cart_button}`
+                : `${styles.cart_button} bg-gray-200! hover:bg-gray-200!`
+            }
           >
             <span
-              className={`${active > 1 ? `${styles.cart_button_text}` : `${styles.cart_button_text} !text-[#f63b60]`}`}
+              className={
+                active > 1
+                  ? `${styles.cart_button_text}`
+                  : `${styles.cart_button_text} text-gray-500!`
+              }
             >
               2.Payment
             </span>
@@ -33,17 +40,25 @@ const CheckoutSteps = ({ active }) => {
 
         <div className={`${styles.noramlFlex}`}>
           <div
-            className={`${
+            className={
               active > 3
-                ? "w-[30px] 800px:w-[70px] h-[4px] !bg-[#f63b60]"
-                : "w-[30px] 800px:w-[70px] h-[4px] !bg-[#FDE1E6]"
-            }`}
+                ? "w-7.5 800px:w-17.5 h-1 bg-[#C9A227]!"
+                : "w-7.5 800px:w-17.5 h-1 bg-gray-200!"
+            }
           />
           <div
-            className={`${active > 2 ? `${styles.cart_button}` : `${styles.cart_button} !bg-[#FDE1E6]`}`}
+            className={
+              active > 2
+                ? `${styles.cart_button}`
+                : `${styles.cart_button} bg-gray-200! hover:bg-gray-200!`
+            }
           >
             <span
-              className={`${active > 2 ? `${styles.cart_button_text}` : `${styles.cart_button_text} !text-[#f63b60]`}`}
+              className={
+                active > 2
+                  ? `${styles.cart_button_text}`
+                  : `${styles.cart_button_text} text-gray-500!`
+              }
             >
               3.Success
             </span>

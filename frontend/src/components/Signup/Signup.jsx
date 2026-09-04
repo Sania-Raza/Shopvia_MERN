@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
-import { RxAvatar } from "react-icons/rx";
+import { FiUser } from "react-icons/fi";
 import axios from "axios";
 import { server } from "../../server";
 import { toast } from "react-toastify";
@@ -16,7 +16,6 @@ const Signup = () => {
 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
-    console.log("SELECTED FILE:", file);
     setAvatar(file);
   };
 
@@ -24,9 +23,7 @@ const Signup = () => {
     e.preventDefault();
 
     const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      headers: { "Content-Type": "multipart/form-data" },
     };
     const newForm = new FormData();
 
@@ -46,155 +43,156 @@ const Signup = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
         toast.error(
-          error.response?.data?.message
-            ? error.response.data.message
-            : "Check your Internet connection",
+          error.response?.data?.message || "Check your Internet connection",
         );
       });
   };
+
   return (
-    <>
-      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Register as a new user
-          </h2>
-        </div>
+    <div className="min-h-screen bg-[#FDFBF7] flex flex-col justify-center py-6 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <Link to="/" className="flex justify-center mb-6">
+          <img
+            className="h-14 object-contain"
+            src="https://shopvia.pk/wp-content/uploads/elementor/thumbs/logo-01-scaled-rlwdrsge74eteo3fiak2itpoe12ycp3oo7yd0nct0o.jpg"
+            alt="Logo"
+          />
+        </Link>
+        <h2 className="text-center text-[26px] font-semibold text-[#1E1B4B]">
+          Create your account
+        </h2>
+        <p className="text-center text-[14px] text-gray-500 mt-1">
+          Join to start shopping and selling
+        </p>
+      </div>
 
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form action="" className="space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Full Name
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="text"
-                    autoComplete="name"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-6 shadow-sm rounded-2xl sm:px-10 border border-[#f0ece3]">
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-[#1E1B4B] mb-1.5"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                name="text"
+                autoComplete="name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="block w-full px-3.5 py-2.5 border border-[#e5e0d8] rounded-lg shadow-sm placeholder-gray-400 outline-none focus:border-[#C9A227] focus:ring-1 focus:ring-[#C9A227] transition-all sm:text-sm"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-[#1E1B4B] mb-1.5"
+              >
+                Email Address
+              </label>
+              <input
+                type="text"
+                name="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="block w-full px-3.5 py-2.5 border border-[#e5e0d8] rounded-lg shadow-sm placeholder-gray-400 outline-none focus:border-[#C9A227] focus:ring-1 focus:ring-[#C9A227] transition-all sm:text-sm"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-[#1E1B4B] mb-1.5"
+              >
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  type={visible ? "text" : "password"}
+                  name="password"
+                  autoComplete="current-password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="block w-full px-3.5 py-2.5 pr-11 border border-[#e5e0d8] rounded-lg shadow-sm placeholder-gray-400 outline-none focus:border-[#C9A227] focus:ring-1 focus:ring-[#C9A227] transition-all sm:text-sm"
+                />
+                {visible ? (
+                  <AiOutlineEye
+                    className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-400"
+                    size={20}
+                    onClick={() => setVisible(false)}
                   />
-                </div>
+                ) : (
+                  <AiOutlineEyeInvisible
+                    className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-400"
+                    size={20}
+                    onClick={() => setVisible(true)}
+                  />
+                )}
               </div>
+            </div>
 
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Email Address
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="email"
-                    autoComplete="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Password
-                </label>
-                <div className="mt-1 relative">
-                  <input
-                    type={visible ? "text" : "password"}
-                    name="password"
-                    autoComplete="current-password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  />
-                  {visible ? (
-                    <AiOutlineEye
-                      className="absolute right-2 top-2 cursor-pointer"
-                      size={25}
-                      onClick={() => setVisible(false)}
+            <div>
+              <label className="block text-sm font-medium text-[#1E1B4B] mb-2">
+                Profile Photo
+              </label>
+              <div className="flex items-center">
+                <span className="h-12 w-12 rounded-full overflow-hidden bg-white border-2 border-[#e5e0d8] flex items-center justify-center">
+                  {avatar ? (
+                    <img
+                      src={URL.createObjectURL(avatar)}
+                      alt="avatar"
+                      className="h-full w-full object-cover rounded-full"
                     />
                   ) : (
-                    <AiOutlineEyeInvisible
-                      className="absolute right-2 top-2 cursor-pointer"
-                      size={25}
-                      onClick={() => setVisible(true)}
-                    />
+                    <FiUser className="h-5 w-5 text-gray-400" />
                   )}
-                </div>
-              </div>
-
-              <div>
+                </span>
                 <label
-                  htmlFor="avatar"
-                  className="block text-sm text-gray-700"
-                ></label>
-                <div className="mt-2 flex items-center">
-                  <span className="inline-block h-8 rounded-full overflow-hidden">
-                    {avatar ? (
-                      <img
-                        src={URL.createObjectURL(avatar)}
-                        alt="avatar"
-                        srcSet=""
-                        className="h-full w-full object-cover rounded-full"
-                      />
-                    ) : (
-                      <RxAvatar className="h-8 w-8" />
-                    )}
-                  </span>
-                  <label
-                    htmlFor="file-input"
-                    className="ml-5 flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
-                  >
-                    <span>Upload a file</span>
-                    <input
-                      type="file"
-                      name="avatar"
-                      id="file-input"
-                      accept=".jpg,.jpeg,.png"
-                      onChange={handleFileInputChange}
-                      required
-                      className="sr-only"
-                    />
-                  </label>
-                </div>
-              </div>
-
-              <div>
-                <button
-                  type="submit"
-                  className="group relative w-full h-10 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                  htmlFor="file-input"
+                  className="ml-4 flex items-center justify-center px-4 py-2 border border-[#e5e0d8] rounded-full shadow-sm text-sm font-medium text-[#1E1B4B] bg-white hover:border-[#C9A227] hover:text-[#C9A227] transition-colors cursor-pointer"
                 >
-                  Submit
-                </button>
+                  <span>Upload photo</span>
+                  <input
+                    type="file"
+                    name="avatar"
+                    id="file-input"
+                    accept=".jpg,.jpeg,.png"
+                    onChange={handleFileInputChange}
+                    required
+                    className="sr-only"
+                  />
+                </label>
               </div>
+            </div>
 
-              <div className={`${styles.noramlFlex} w-full`}>
-                <h4>Already have an account?</h4>
-                <Link to="/login" className="text-blue-600 pl-2">
-                  Sign In
-                </Link>
-              </div>
-            </form>
-          </div>
+            <button
+              type="submit"
+              className="w-full h-11.5 flex justify-center items-center rounded-full text-sm font-semibold text-white bg-[#1E1B4B] hover:bg-[#141130] transition-colors"
+            >
+              Create Account
+            </button>
+
+            <div className="flex justify-center text-sm">
+              <h4 className="text-gray-600">Already have an account?</h4>
+              <Link
+                to="/login"
+                className="text-[#C9A227] font-medium pl-2 hover:text-[#b8931f]"
+              >
+                Sign In
+              </Link>
+            </div>
+          </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

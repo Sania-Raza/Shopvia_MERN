@@ -86,6 +86,24 @@ export const productReducer = createReducer(initialState, (builder) => {
       state.error = action.payload;
     })
 
+    // GET SINGLE PRODUCT
+    // =========================
+
+    .addCase("getProductByIdRequest", (state) => {
+      state.isLoading = true;
+      state.error = null;
+    })
+
+    .addCase("getProductByIdSuccess", (state, action) => {
+      state.isLoading = false;
+      state.product = action.payload;
+    })
+
+    .addCase("getProductByIdFailed", (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    })
+
     // =========================
     // CLEAR ERRORS
     // =========================
@@ -94,3 +112,4 @@ export const productReducer = createReducer(initialState, (builder) => {
       state.error = null;
     });
 });
+

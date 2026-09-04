@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    unique: true,
     required: [true, "Please enter your email!"],
   },
   password: {
@@ -47,7 +48,14 @@ const userSchema = new mongoose.Schema({
     default: "user",
   },
   avatar: {
-    type: String,
+    public_id: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
   },
   createdAt: {
     type: Date,
@@ -60,10 +68,11 @@ const userSchema = new mongoose.Schema({
 //  Hash password
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
-    next();
+    return
   }
 
   this.password = await bcrypt.hash(this.password, 10);
+  
 });
 
 // jwt token
