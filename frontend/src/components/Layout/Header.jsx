@@ -182,7 +182,7 @@ const Header = ({ activeHeading }) => {
               {dropDown && (
                 <Dropdown
                  categoriesData={categoriesData}
-                 setDropdown={setDropdown}
+                 setDropDown={setDropDown}
                  />
               )}
             </div>
