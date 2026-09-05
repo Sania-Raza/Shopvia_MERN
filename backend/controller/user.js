@@ -22,24 +22,24 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
-      const filename = req.file.filename;
-      const filePath = `uploads/${filename}`;
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          console.log(err);
-          res.status(500).json({
-            message: "Error Deleting file",
-          });
-        }
-      });
-      return next(new ErrorHandler("User already exists", 400));
-    }
-    const myCloud = await cloudinary.v2.uploader.upload(req.file.path, {
+  return next(new ErrorHandler("User already exists", 400));
+}
+    const myCloud = await new Promise((resolve, reject) => {
+  const uploadStream = cloudinary.v2.uploader.upload_stream(
+    {
       folder: "avatars",
-    });
+    },
+    (error, result) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(result);
+      }
+    },
+  );
 
-    const filename = req.file.filename;
-    const fileUrl = path.join(filename);
+  uploadStream.end(req.file.buffer);
+});
 
     const user = {
       name: name,
