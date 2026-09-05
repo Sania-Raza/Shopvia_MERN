@@ -2,15 +2,27 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "../../../styles/styles";
 import ProductCard from "../ProductCard/ProductCard";
+import Loader from "../../Layout/Loader";
 
 const BestDeals = () => {
   const [data, setData] = useState([]);
-  const { allProducts } = useSelector((state) => state.products);
+
+  const { allProducts, isLoading } = useSelector(
+    (state) => state.products
+  );
+
   useEffect(() => {
+    if (!allProducts || allProducts.length === 0) {
+      setData([]);
+      return;
+    }
+
     const sortedData = [...allProducts].sort(
-      (a, b) => b.total_sell - a.total_sell,
+      (a, b) => b.total_sell - a.total_sell
     );
-    const firstFive = sortedData && sortedData.slice(0, 5);
+
+    const firstFive = sortedData.slice(0, 5);
+
     setData(firstFive);
   }, [allProducts]);
 
@@ -20,14 +32,17 @@ const BestDeals = () => {
         <div className={`${styles.heading}`}>
           <h1>Best Deals</h1>
         </div>
-        <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-2 md:gap-6.25 lg:grid-cols-4 lg:gap-6.25 xl:grid-cols-5 xl:gap-7.5 mb-12 border-0">
-          {data && data.length !== 0 && (
-            <>
-              {data &&
-                data.map((i, index) => <ProductCard data={i} key={index} />)}
-            </>
-          )}
-        </div>
+
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-2 md:gap-6.25 lg:grid-cols-4 lg:gap-6.25 xl:grid-cols-5 xl:gap-7.5 mb-12 border-0">
+            {data &&
+              data.map((i, index) => (
+                <ProductCard data={i} key={index} />
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );
