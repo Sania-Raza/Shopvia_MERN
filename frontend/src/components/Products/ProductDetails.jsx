@@ -468,7 +468,7 @@ const ProductDetailsInfo = ({
                 <span className="font-semibold">{totalReviewsLength || 0}</span>
               </h5>
 
-              <Link to="/">
+              <Link to={`/shop/preview/${data?.shop?._id}`}>
                 <div className={`${styles.button} rounded-sm! h-10.5! mt-3`}>
                   <h4 className="text-white">Visit Shop</h4>
                 </div>
