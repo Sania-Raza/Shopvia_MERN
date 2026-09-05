@@ -9,10 +9,11 @@ const cloudinary = require("../config/cloudinary");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const ErrorHandler = require("../utils/ErrorHandler");
 const sendShopToken = require("../utils/shopToken");
-
+const { upload } = require("../multer");
 // create shop
 router.post(
   "/create-shop",
+  upload.single("file"),
   catchAsyncErrors(async (req, res, next) => {
     try {
       const { email } = req.body;
@@ -21,8 +22,18 @@ router.post(
         return next(new ErrorHandler("User already exists", 400));
       }
 
-      const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-        folder: "avatars",
+      const myCloud = await new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.v2.uploader.upload_stream(
+          { folder: "avatars" },
+          (error, result) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(result);
+            }
+          },
+        );
+        uploadStream.end(req.file.buffer);
       });
 
       const seller = {
@@ -203,6 +214,7 @@ router.get(
 router.put(
   "/update-shop-avatar",
   isSeller,
+  upload.single("file"),
   catchAsyncErrors(async (req, res, next) => {
     try {
       let existsSeller = await Shop.findById(req.seller._id);
@@ -211,9 +223,18 @@ router.put(
 
       await cloudinary.v2.uploader.destroy(imageId);
 
-      const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-        folder: "avatars",
-        width: 150,
+     const myCloud = await new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.v2.uploader.upload_stream(
+          { folder: "avatars", width: 150 },
+          (error, result) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(result);
+            }
+          },
+        );
+        uploadStream.end(req.file.buffer);
       });
 
       existsSeller.avatar = {
