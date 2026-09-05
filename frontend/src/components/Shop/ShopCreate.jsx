@@ -16,27 +16,36 @@ const ShopCreate = () => {
   const [avatar, setAvatar] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
-
+  const [avatarPreview, setAvatarPreview] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!avatar) {
+      toast.error("Please upload a shop avatar");
+      return;
+    }
+
+    const newForm = new FormData();
+    newForm.append("file", avatar); 
+    newForm.append("name", name);
+    newForm.append("email", email);
+    newForm.append("password", password);
+    newForm.append("zipCode", zipCode);
+    newForm.append("address", address);
+    newForm.append("phoneNumber", phoneNumber);
+
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
     axios
-      .post(`${server}/shop/create-shop`, {
-        name,
-        email,
-        password,
-        avatar,
-        zipCode,
-        address,
-        phoneNumber,
-      })
+      .post(`${server}/shop/create-shop`, newForm, config)
       .then((res) => {
         toast.success(res.data.message);
 
         setName("");
         setEmail("");
         setPassword("");
-        setAvatar("");
+        setAvatar(null);
+        setAvatarPreview("");
         setZipCode("");
         setAddress("");
         setPhoneNumber("");
@@ -47,15 +56,18 @@ const ShopCreate = () => {
   };
 
   const handleFileInputChange = (e) => {
-    const reader = new FileReader();
+    const file = e.target.files[0];
+    if (!file) return;
 
+    setAvatar(file); 
+
+    const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setAvatar(reader.result);
+        setAvatarPreview(reader.result); 
       }
     };
-
-    reader.readAsDataURL(e.target.files[0]);
+    reader.readAsDataURL(file);
   };
 
   const inputClass =
@@ -190,9 +202,9 @@ const ShopCreate = () => {
               </label>
               <div className="flex items-center">
                 <span className=" h-12 w-12 rounded-full overflow-hidden bg-white border-2 border-[#e5e0d8] flex items-center justify-center">
-                  {avatar ? (
+                  {avatarPreview ? (
                     <img
-                      src={avatar}
+                      src={avatarPreview}
                       alt="avatar"
                       className="h-full w-full object-cover rounded-full"
                     />
